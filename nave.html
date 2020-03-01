@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nave.rs</title>
+</head>
+
+<body>
+    <script>
+        /**E.1 Crie uma função que recebe dois argumentos 
+         * string e retorna o de maior comprimento. */
+        var verificaComprimento = (primeiraString, segundaString) => primeiraString.length > segundaString.lengths ? primeiraString : segundaString;
+
+        var primeiraString = 'teste';
+        var segundaString = 'estagio';
+        console.log(verificaComprimento(primeiraString, segundaString));
+
+        console.log("-------------------------------------------------");
+        /*E.2 Crie uma função que recebe três argumentos, 
+         *uma função e duas string, aplique a função nas 
+         *duas string e imprima o resultado.*/
+        function padronizaCamelCase(primeiroNome, segundoNome, caixaAlta) {
+            return caixaAlta(primeiroNome, segundoNome);
+        }
+        console.log(padronizaCamelCase("nome", "sobrenome", function(nom, sobrenom) {
+            return nom.charAt(0).toUpperCase() + nom.slice(1) + " " + sobrenom.charAt(0).toUpperCase() + sobrenom.slice(1);
+        }));
+
+        console.log("-------------------------------------------------");
+        /*E.3 Crie uma função que recebe 
+         *vários argumentos do tipo string 
+         *e imprime todos juntos*/
+
+        function imprimindoStrings(nome, idade, sexo, cpf) {
+            return "Nome : " + nome + "\nIdade : " + idade + " \nSexo: " + sexo + " \nCPF : " + cpf;
+        }
+        var nome = "Paulo"
+        var idade = "34"
+        var sexo = "M"
+        var cpf = "011245874-12"
+
+        console.log(imprimindoStrings(nome, idade, sexo, cpf));
+        console.log("-------------------------------------------------");
+        /**
+         *E.4 Dado a seguinte string 'teste 1 de 2 string 3', 
+         *substitua todas as ocorrências de números 
+         *pelo valor '[removido]'.
+         */
+        var frase = 'teste 1 de 2 string 3';
+        var substituida = frase.replace(/\d/g, '[removido]');
+        console.log(substituida);
+        console.log("-------------------------------------------------");
+        /** E.5 Dado o dicionário {4: 'a', 3: 'e', 1: 'i', 5: 's'} 
+         *substitua os números na frase 'T35t3 d3 35t4g1o' 
+         * conforme o dicionário.*/
+        var frase = 'T35t3 d3 35t4g1o';
+        var dicionario = { //objeto dicionário
+            4: 'a',
+            3: 'e',
+            1: 'i',
+            5: 's'
+        };
+        /** procura na string valor da variavel frase o 
+        caracter /4/ i - iginorando case e g - procurando em toda string
+        */
+        var numerosDaFrase = frase.replace(/4/ig, dicionario[4]);
+        var numerosDaFrase = numerosDaFrase.replace(/3/ig, dicionario[3]);
+        var numerosDaFrase = numerosDaFrase.replace(/1/ig, dicionario[1]);
+        var numerosDaFrase = numerosDaFrase.replace(/5/ig, dicionario[5]);
+        console.log(frase);
+        /*for (var chave in dicionario) {
+         *    var numerosDaFrase = frase.replace(/chave/g, dicionario[chave]);
+         *}*/
+        console.log(numerosDaFrase);
+
+        console.log("-------------------------------------------------");
+        /*E.6 Utilizando a api da viacep (https://viacep.com.br/) 
+         * e o seu cep como entrada imprima o seu endereço no 
+         * formato 'ENDERECO, NUMERO, CIDADE/ESTADO'.*/
+
+
+        /*
+         *Para os seguintes exercícios considere o array de objetos:
+         *[
+         *    {id: 1, nome: 'juca', sobrenome: 'da silva', idade: 42},
+         *    {id: 2, nome: 'daniel', sobrenome: 'gonçalves',  idade: 21},
+         *    {id:3, nome: 'matheus', sobrenome: 'garcia', idade: 28},
+         *    {id: 4, nome: 'gabriel', sobrenome: 'pinheiro',  idade: 21}
+         *]
+         *E.7 Imprima uma mensagem de saudação com o nome 
+         *completo para cada um dos objetos. O nome deve ter 
+         *a primeira letra maiúscula.
+         *Ex.:
+         *Olá, Fulano de tal!
+         *Olá, Juca da silva!
+         *...
+         */
+
+        var dados = [{
+            id: 1,
+            nome: 'juca',
+            sobrenome: 'da silva',
+            idade: 42
+        }, {
+            id: 2,
+            nome: 'daniel',
+            sobrenome: 'gonçalves',
+            idade: 21
+        }, {
+            id: 3,
+            nome: 'matheus',
+            sobrenome: 'garcia',
+            idade: 28
+        }, {
+            id: 4,
+            nome: 'gabriel',
+            sobrenome: 'pinheiro',
+            idade: 21,
+
+        }];
+
+        for (var i = 0; i < dados.length; i++) { //loop que repeti enquanto a quantidade do array nao zerar
+            console.log("Olá, " + dados[i]["nome"].charAt(0).toUpperCase() + dados[i]["nome"].slice(1) + " " + dados[i]["sobrenome"] + " !");
+        }
+
+        console.log("-------------------------------------------------");
+        /*
+         * E.8 Imprima a soma das idades (dica: utilize reduce)
+         */
+        console.log(dados.reduce((valorAcumulador, valorArray) => valorAcumulador + valorArray.idade, 0));
+        console.log("-------------------------------------------------");
+        /*E.9 Imprima o objeto se existir alguem com menos 25 anos.*/
+        console.log(dados.filter(function(dados) {
+            return dados.idade < 25
+        }));
+        console.log("-------------------------------------------------");
+        /*E.10 Imprima todos os elementos em que a idade é menor que 30 anos.*/
+        console.log(dados.filter(function(dados) {
+            return dados.idade < 30
+        }));
+        console.log("-------------------------------------------------");
+        /*E.11 Ordene o array de forma decrescente 
+         *por idade, em caso de empate o desempate é pelo id.*/
+        console.log(dados.sort((a, b) => b.idade > a.idade ? 1 : b.idade < a.idade ? -1 : b.id > a.id ? 1 : b.id < a.id ? -1 : 0));
+
+        console.log("-------------------------------------------------");
+    </script>
+</body>
+
+</html>
