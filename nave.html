@@ -8,14 +8,19 @@
 </head>
 
 <body>
+    <input type="text" id="inCep" name="">
+    <button type="submit" id="btn_verificar">verificar</button>
+
+    <h2 id="saida"></h2>
+    <script  src = " https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js " > </script>
     <script>
         /**E.1 Crie uma função que recebe dois argumentos 
          * string e retorna o de maior comprimento. */
         var verificaComprimento = (primeiraString, segundaString) => primeiraString.length > segundaString.lengths ? primeiraString : segundaString;
 
-        var primeiraString = 'teste';
-        var segundaString = 'estagio';
-        console.log(verificaComprimento(primeiraString, segundaString));
+        var priString = 'teste';
+        var segString = 'estagio';
+        console.log(verificaComprimento(priString, segString));
 
         console.log("-------------------------------------------------");
         /*E.2 Crie uma função que recebe três argumentos, 
@@ -80,6 +85,27 @@
          * e o seu cep como entrada imprima o seu endereço no 
          * formato 'ENDERECO, NUMERO, CIDADE/ESTADO'.*/
 
+         let saida = document.getElementById('saida');
+         function viacep(){
+            //alert('erro');
+            let inCep = document.getElementById('inCep');
+
+            let cep = inCep.value;
+            const result = axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+
+            result.then( valor => console.log(valor));
+            result.then(valor => apresentaEndereco(valor.data));
+
+            //saida.textContent = result; //textContent
+            //console.log(cep);
+         }
+
+         function apresentaEndereco({logradouro, localidade,uf}){
+            saida.textContent = `${logradouro} , ${localidade}/${uf}`;
+         }
+
+         let btn_verificar = document.getElementById('btn_verificar');
+         btn_verificar.addEventListener('click', viacep);
 
         /*
          *Para os seguintes exercícios considere o array de objetos:
