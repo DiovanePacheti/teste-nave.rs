@@ -57,29 +57,31 @@
         var frase = 'teste 1 de 2 string 3';
         var substituida = frase.replace(/\d/g, '[removido]');
         console.log(substituida);
+
         console.log("-------------------------------------------------");
         /** E.5 Dado o dicionário {4: 'a', 3: 'e', 1: 'i', 5: 's'} 
-         *substitua os números na frase 'T35t3 d3 35t4g1o' 
-         * conforme o dicionário.*/
+         *substitua os números na frase 'T35t3 d3 35t4g1o' conforme o dicionário.*/
         var frase = 'T35t3 d3 35t4g1o';
-        var dicionario = { //objeto dicionário
+        let fraseSeparaNoArray = frase.split('');//gera um array com todas a letas e espaç contigo na frase
+        const dicionario = { //objeto dicionário
             4: 'a',
             3: 'e',
             1: 'i',
             5: 's'
         };
-        /** procura na string valor da variavel frase o 
-        caracter /4/ i - iginorando case e g - procurando em toda string
-        */
-        var numerosDaFrase = frase.replace(/4/ig, dicionario[4]);
-        var numerosDaFrase = numerosDaFrase.replace(/3/ig, dicionario[3]);
-        var numerosDaFrase = numerosDaFrase.replace(/1/ig, dicionario[1]);
-        var numerosDaFrase = numerosDaFrase.replace(/5/ig, dicionario[5]);
-        console.log(frase);
-        /*for (var chave in dicionario) {
-         *    var numerosDaFrase = frase.replace(/chave/g, dicionario[chave]);
-         *}*/
-        console.log(numerosDaFrase);
+        const indexDicionario = Object.keys(dicionario);//gera um array so com os valores dos index da dicionario
+        
+         const fraseDescodificadaArray = fraseSeparaNoArray.map(valor => {//mapeando todos os valores do array de letras
+         
+            if(indexDicionario.includes(valor)){//se o valor do array de letras estiver contigo no indexDicionario
+                 v =  dicionario[valor] //atribui a variavel let v o valor do dicionario na posição do valor encontrado no array de letras
+                return v //retorna v
+            }else{
+                return valor//senao retorna o valor original 
+            }
+         })
+         let fraseDescodificada = fraseDescodificadaArray.join('');//unindo as letras em uma frase tirando do formato armazenado de array
+        console.log(fraseDescodificada);
 
         console.log("-------------------------------------------------");
         /*E.6 Utilizando a api da viacep (https://viacep.com.br/) 
