@@ -38,15 +38,16 @@
          *vários argumentos do tipo string 
          *e imprime todos juntos*/
 
-        function imprimindoStrings(nome, idade, sexo, cpf) {
-            return "Nome : " + nome + "\nIdade : " + idade + " \nSexo: " + sexo + " \nCPF : " + cpf;
+        function imprimindoStrings({nome, idade, sexo, cpf}) {
+            return `Nome :${nome} \nIdade :${idade}  \nSexo :${sexo}   \nCPF :${cpf}`;
         }
-        var nome = "Paulo"
-        var idade = "34"
-        var sexo = "M"
-        var cpf = "011245874-12"
-
-        console.log(imprimindoStrings(nome, idade, sexo, cpf));
+        client = {
+             nome:"Paulo",
+             idade: "34",
+             sexo:"M",
+             cpf:"011245874-12"
+        }  
+        console.log(imprimindoStrings(client));
         console.log("-------------------------------------------------");
         /**
          *E.4 Dado a seguinte string 'teste 1 de 2 string 3', 
